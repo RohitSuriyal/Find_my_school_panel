@@ -1,0 +1,11 @@
+
+.tab {
+    display: none; /* Hide all tabs by default */
+}
+
+.tab.selected {
+    display: block; /* Show the selected tab */
+}
+.class-div {
+    display: none;
+}
