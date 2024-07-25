@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/edu_case_panel/';
+$config['base_url'] = 'http://test.findmyschools.co.in/';
 $config['sess_expiration'] = 0; // Sessions expire only when destroyed manually
 
 /*
