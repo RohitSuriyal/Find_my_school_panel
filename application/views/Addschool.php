@@ -3423,7 +3423,7 @@
                                     <option>Yes</option>
                                     <option>No</option>
                                     <option>NA</option>
-                                                                            <option>Halfyearly</option>
+                                    <option>Halfyearly</option>
 
 
                                 </select>
@@ -5211,7 +5211,7 @@
                         <option>Classroom</option>
                         <option>Library</option>
                         <option>Playground</option>
-                        
+
                     </select>
                     <input class="form-control" type="file" name="image_file">
                     <div class="d-flex justify-content-center">
@@ -5296,14 +5296,14 @@
 
             var selectedTags = $('#tags_school').select2('data');
             var selectedString = selectedTags.map(tag => tag.text).join(', ');
-            var school_type=$('#school_type_first_tab').select2('data');
-            var school_type_string=school_type.map(tag => tag.text).join(', ');
+            var school_type = $('#school_type_first_tab').select2('data');
+            var school_type_string = school_type.map(tag => tag.text).join(', ');
 
 
 
             var formdata = new FormData($(this)[0]);
             formdata.append('tags_school', selectedString);
-            formdata.append('school_type',school_type_string);
+            formdata.append('school_type', school_type_string);
             $.ajax({
                 url: "<?php echo base_url('welcome/add_basic_detail'); ?>", // Fixed the concatenation issue
                 type: "POST", // Specify the type of request
@@ -5318,7 +5318,7 @@
                         title: 'Success!',
                         text: 'Basic Detail added successfully'
                     });
-                    
+
                     $('#tags_school').val(null).trigger('change'); // Reset tags
                     $('.tab-pane').removeClass('active');
                     $('.nav-link').removeClass('active');
@@ -5951,7 +5951,7 @@
             var class_facilities = $("#class_facilities").val();
             var class_facilities_string = class_facilities.join(",");
             var boarding = $("#boarding").val();
-            var boardingstring= boarding.join(",");
+            var boardingstring = boarding.join(",");
 
             var infrastructure = $("#infrastructure").val();
             var infrastructure_string = infrastructure.join(",");
@@ -5973,7 +5973,7 @@
                 dataType: "json",
                 data: {
                     class_facilities_string: class_facilities_string,
-                    boarding:boardingstring,
+                    boarding: boardingstring,
                     infrastructure_string: infrastructure_string,
                     safety_and_security_string: safety_and_security_string,
                     advanced_facilities_string: advanced_facilities_string,
@@ -6028,7 +6028,7 @@
             width: "100%",
         });
         $("#complete_Submission").on("click", function() {
-            console.log("rohit singh suriyal");
+
             $(".formeligible").each(function() {
                 this.reset();
             });
@@ -6037,6 +6037,20 @@
 
             })
             $('.facility').val(null).trigger('change');
+
+            $("#basic_detail_form")[0].reset();
+
+            $("#overview_form")[0].reset();
+            $("#school_type_first_tab").val(null).trigger('change');
+            $("#tags_school").val(null).trigger("change");
+            $("#india-states").val(null).trigger("change");
+            $("#school_format").val(null).trigger("change");
+            //this is for the change of the school
+            $('.tab-pane').removeClass('active');
+            $('.nav-link').removeClass('active');
+            $("#pills-home-tab").addClass('active');
+            $("#pills-home").addClass('active');
+            $("#pills-home").addClass('show');
+
         })
-       
-        </script>
+    </script>
