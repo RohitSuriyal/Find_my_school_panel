@@ -64,7 +64,7 @@
                     <div class="row p-4">
                         <div class="col-md-6">
                             <label for="heading" class="form-label bold libre">Name of the school</label>
-                            <input type="text" required name="school_name" id="school_name" class="form-control">
+                            <input type="text" name="school_name" id="school_name" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="tags" name="school_type" class="form-label bold libre">Category</label>
@@ -92,11 +92,11 @@
                     <div class="row p-4">
                         <div class="col-md-6">
                             <label for="heading" class="form-label bold libre">Class Offered</label>
-                            <input type="text" required name="class_offerd" id="school_name" class="form-control">
+                            <input type="text" name="class_offerd" id="school_name" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="image" class="form-label bold libre">Board</label>
-                            <select required name="board" type="" placeholder="enter your Board" class="form-control" id="board">
+                            <select name="board" type="" placeholder="enter your Board" class="form-control" id="board">
                                 <option>Select your board</option>
                                 <option value="CBSE">CBSE</option>
                                 <option value="ICSE">ICSE</option>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="row p-4 mx-2">
                         <label for="image" class="form-label bold libre">Student faculty ration</label>
-                        <input required name="student_faculty_ratio" type="" placeholder="student faculty ratio" class="form-control" id="student_faculty_ratio">
+                        <input name="student_faculty_ratio" type="" placeholder="student faculty ratio" class="form-control" id="student_faculty_ratio">
 
 
 
@@ -177,7 +177,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="location" class="form-label bold libre">City</label>
-                            <input required name="city" type="" placeholder="enter your Location" class="form-control" id="location">
+                            <input name="city" type="" placeholder="enter your Location" class="form-control" id="location">
                         </div>
 
 
@@ -185,7 +185,7 @@
                     <div class="row p-4">
                         <div class="col-md-12">
                             <label for="address" class="form-label bold libre">Addresss</label>
-                            <input required name="address" type="" placeholder="enter the address" class="form-control" id="location">
+                            <input name="address" type="" placeholder="enter the address" class="form-control" id="location">
 
 
                         </div>
@@ -216,44 +216,44 @@
                         <div class="row p-4">
                             <div class="col-md-6">
                                 <label for="heading" class="form-label bold libre">Ownership</label>
-                                <select type="text" required name="ownership" id="Ownership" class="form-control">
+                                <select type="text" name="ownership" id="Ownership" class="form-control">
                                     <option>Private</option>
                                     <option>Private Aided</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="image" class="form-label bold libre">Year of establishment</label>
-                                <input required name="establishment" type="" class="form-control" id="year_of_establishment">
+                                <input name="establishment" type="" class="form-control" id="year_of_establishment">
                             </div>
                         </div>
                         <div class="row p-4">
                             <div class="col-md-6">
                                 <label for="heading" class="form-label bold libre">Campus</label>
-                                <input type="text" required name="campus" id="campus" class="form-control">
+                                <input type="text" name="campus" id="campus" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="image" class="form-label bold libre">Board</label>
-                                <input required name="board" type="" placeholder="enter your board" class="form-control" id="board">
+                                <input name="board" type="" placeholder="enter your board" class="form-control" id="board">
                             </div>
                         </div>
                         <div class="row p-4">
                             <div class="col-md-6">
                                 <label for="heading" class="form-label bold libre">Co-Ed Status</label>
-                                <input type="text" required name="Co_ed_status" id="Co-Ed Status" class="form-control">
+                                <input type="text" name="Co_ed_status" id="Co-Ed Status" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="image" class="form-label bold libre">Campus type</label>
-                                <input required name="campus_type" type="" class="form-control" id="campus type">
+                                <input name="campus_type" type="" class="form-control" id="campus type">
                             </div>
                         </div>
                         <div class="row p-4">
                             <div class="col-md-6">
                                 <label for="heading" class="form-label bold libre">Language of interaction</label>
-                                <input type="text" required name="interact_language" id="language_of_interaction" class="form-control">
+                                <input type="text" name="interact_language" id="language_of_interaction" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="image" class="form-label bold libre">Academic session</label>
-                                <input required name="session" type="" class="form-control" id="academic_session">
+                                <input name="session" type="" class="form-control" id="academic_session">
                             </div>
                         </div>
 
@@ -5105,6 +5105,7 @@
 
                                         <option value="girls hostel">Girls hostel</option>
                                         <option value="girls hostel">Boys hostel</option>
+                                        <option value="NA">NA</option>
 
 
                                     </select>
