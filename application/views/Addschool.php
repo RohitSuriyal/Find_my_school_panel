@@ -5293,7 +5293,7 @@
 
         $(document).on("submit", "#basic_detail_form", function(e) {
             e.preventDefault();
-            console.log("sfsdf");
+           
 
             var selectedTags = $('#tags_school').select2('data');
             var selectedString = selectedTags.map(tag => tag.text).join(', ');
@@ -5342,11 +5342,7 @@
         });
         //overviewform
 
-        $("#school_format").on("change", function() {
-
-
-
-        })
+       
         $(document).on("submit", "#overview_form", function(e) {
             e.preventDefault();
 

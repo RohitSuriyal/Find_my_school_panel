@@ -33,13 +33,17 @@
   <!-- //this is for the select2 -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- this is for the datatable -->
+  <link href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.min.css">
 
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Educase</a>
+    <a class="navbar-brand ps-3" href="index.html">Findmyschool</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -69,7 +73,7 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
           <div class="nav">
-            <div class="sb-sidenav-menu-heading">Core</div>
+           
             <a href="{{route('dashboard')}}" class="nav-link" href="index.html">
               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
               Dashboard
@@ -86,7 +90,7 @@
 
               </nav>
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="{{route('home')}}">Manage Blog</a>
+                <a class="nav-link" href="<?php echo base_url("welcome/manageblog") ?>">Manage Blog</a>
 
               </nav>
             </div>
@@ -101,7 +105,7 @@
 
               </nav>
               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link" href="<?php echo base_url("welcome/Addblog") ?>">Add Blog</a>
+                <a class="nav-link" href="<?php echo base_url("welcome/manage_school") ?>">Manage School</a>
 
               </nav>
             </div>

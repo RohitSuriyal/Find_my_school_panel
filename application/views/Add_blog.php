@@ -1,6 +1,7 @@
 <?php $this->load->view('common/header'); ?>
 
-<div class="container d-flex justify-content-center bg-grey mt-4" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);">
+<div class="container d-flex justify-content-center bg-grey mt-4"
+    style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);">
     <form id="add_form" style="width:60%!important">
         <div class="row p-4">
             <div class="col-md-6">
@@ -47,6 +48,15 @@
                 <input required name="written_by" type="text" class="form-control" id="written_by">
             </div>
         </div>
+        <div class="row p-4">
+            <div class="col-md-12">
+                <label for="school class=" form-label bold libre">Select School</label>
+                <select required name="school" type="school" class="form-control" id="school">
+                    <option value="NA">NA</option>
+                </select>
+            </div>
+
+        </div>
         <div class="d-flex justify-content-center mt-3">
             <button class="btn btn-primary w-50 bg-success libre">Submit</button>
         </div>
@@ -56,8 +66,8 @@
 <?php $this->load->view('common/footer'); ?>
 
 <script>
-    // Initialization of the select2
-    $('#tags').select2({
+// Initialization of the select2
+$('#tags').select2({
     ajax: {
         url: "<?php echo base_url('Welcome/alltags') ?>",
         dataType: 'json',
@@ -118,6 +128,26 @@
     width: 'resolve', // Adjust width if necessary
 });
 
+//for the dropdown list
+$.ajax({
+
+    url: "<?php echo base_url("Update_blog_controller/getallschoolname") ?>",
+    method: "post",
+    dataType: "json",
+    success: function(data) {
+        console.log(data);
+        let selectElement = $("#school");
+
+        data.forEach(function(school) {
+            let option = $("<option></option>").text(school.name).val(school.id);
+            selectElement.append(option);
+
+
+
+        })
+    }
+})
+
 // Ensure previously selected items are maintained
 $('#tags').on('select2:select', function(e) {
     var data = e.params.data;
@@ -142,79 +172,79 @@ $('#tags').on('select2:select', function(e) {
 
 
 
-    // Add form submit
-    $(document).on("submit", "#add_form", function(event) {
-        event.preventDefault();
+// Add form submit
+$(document).on("submit", "#add_form", function(event) {
+    event.preventDefault();
 
-        var selectedTags = $('#tags').select2('data');
-        var selectedString = selectedTags.map(tag => tag.text).join(', ');
+    var selectedTags = $('#tags').select2('data');
+    var selectedString = selectedTags.map(tag => tag.text).join(', ');
 
-        var formdata = new FormData($(this)[0]);
-        formdata.append('tags', selectedString);
+    var formdata = new FormData($(this)[0]);
+    formdata.append('tags', selectedString);
 
-        $.ajax({
-            url: "<?php echo base_url('welcome/send_data') ?>",
-            method: "post",
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            data: formdata,
-            success: function(data) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Blog added successfully'
-                });
-                $("#add_form")[0].reset();
-                CKEDITOR.instances.editor1.setData(''); // Clear CKEditor content
-                $('#tags').val(null).trigger('change'); // Reset tags
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText); // Log the error to the console
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: 'An error occurred while adding the blog post'
-                });
-            }
-        });
+    $.ajax({
+        url: "<?php echo base_url('welcome/send_data') ?>",
+        method: "post",
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        data: formdata,
+        success: function(data) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Blog added successfully'
+            });
+            $("#add_form")[0].reset();
+            CKEDITOR.instances.editor1.setData(''); // Clear CKEditor content
+            $('#tags').val(null).trigger('change'); // Reset tags
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText); // Log the error to the console
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'An error occurred while adding the blog post'
+            });
+        }
     });
+});
 </script>
 
 <script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
 <script>
-    var editor = CKEDITOR.replace('editor1');
-    CKFinder.setupCKEditor(editor);
+var editor = CKEDITOR.replace('editor1');
+CKFinder.setupCKEditor(editor);
 
-    // Configure CKEditor to allow the class attribute for images
-    editor.on('insertElement', function(event) {
-        var element = event.data; // Get the inserted element
-        if (element.getName() == 'img') { // Check if the inserted element is an image
-            element.addClass('img-custom'); // Add your custom class to the image
+// Configure CKEditor to allow the class attribute for images
+editor.on('insertElement', function(event) {
+    var element = event.data; // Get the inserted element
+    if (element.getName() == 'img') { // Check if the inserted element is an image
+        element.addClass('img-custom'); // Add your custom class to the image
+    }
+});
+
+CKEDITOR.on('instanceReady', function(ev) {
+    ev.editor.on('paste', function(event) {
+        // Access the clipboard data
+        var clipboardData = event.data.dataTransfer;
+
+        // Check if there's an image in the clipboard
+        if (clipboardData && clipboardData.getFilesCount() > 0) {
+            var file = clipboardData.getFile(0); // Get the first file (assuming it's an image)
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var imgSrc = e.target.result;
+                var imgElement = '<img src="' + imgSrc + '" class="img-custom">';
+
+                // Insert the modified HTML into the editor
+                ev.editor.insertHtml(imgElement);
+            };
+
+            reader.readAsDataURL(file); // Read the image file as data URL
+            event.cancel(); // Cancel the default paste behavior
         }
     });
-
-    CKEDITOR.on('instanceReady', function(ev) {
-        ev.editor.on('paste', function(event) {
-            // Access the clipboard data
-            var clipboardData = event.data.dataTransfer;
-
-            // Check if there's an image in the clipboard
-            if (clipboardData && clipboardData.getFilesCount() > 0) {
-                var file = clipboardData.getFile(0); // Get the first file (assuming it's an image)
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    var imgSrc = e.target.result;
-                    var imgElement = '<img src="' + imgSrc + '" class="img-custom">';
-
-                    // Insert the modified HTML into the editor
-                    ev.editor.insertHtml(imgElement);
-                };
-
-                reader.readAsDataURL(file); // Read the image file as data URL
-                event.cancel(); // Cancel the default paste behavior
-            }
-        });
-    });
+});
 </script>
