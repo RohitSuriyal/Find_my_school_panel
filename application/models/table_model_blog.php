@@ -1,5 +1,5 @@
 <?php
- class table_model_blog extends CI_Model{
+ class Table_model_blog extends CI_Model{
    
     var $table = "blog";
     var $select_column = array("id","heading");

@@ -1,5 +1,5 @@
 <?php
- class table_model extends CI_Model{
+ class Table_model extends CI_Model{
    
     var $table = "schools";
     var $select_column = array("id","image" ,"name","state","city","school_type");
